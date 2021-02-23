@@ -9,6 +9,7 @@ earthengine-api = "*"
 pandas = "*"
 tqdm = "*"
 azure-storage-blob = "*"
+azure-mgmt-storage = "*"
 
 [dev-packages]
 autopep8 = "*"
