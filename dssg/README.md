@@ -6,15 +6,24 @@
 
 
 ## How to setup the environment
+<<<<<<< HEAD
 - Create an `.env` file. Here is an example : 
+=======
+- Create an `.env` file and do not commit it. Here is an example : 
+>>>>>>>  Adds a separate dssg directory for new code created by dssg members
 ```
 AZURE_URL = <path_to_omdena_azure_blob_storage>
 BLOB_CONTAINER = "tif-images"
 LOCAL_BLOB_PATH = <local_path_to_download_blob_storage>
 DATA_DIR = <local_path_to_data_dir>
+<<<<<<< HEAD
 OSM_DIR = <path_to_dir_to_download_osm_data>
 ```
 please make sure **never** to commit this file into Git.
+=======
+```
+please make sure never to commit this file into Git.
+>>>>>>>  Adds a separate dssg directory for new code created by dssg members
 In your `DATA_DIR` store the shape files related to india in `gadm36_shp` folder.
 - Download the India related shapefiles from [here](https://biogeo.ucdavis.edu/data/gadm3.6/shp/gadm36_IND_shp.zip)
 - Make sure `pip` is installed in your OS and then install pipenv `pip install pipenv`
