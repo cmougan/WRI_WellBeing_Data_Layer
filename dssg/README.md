@@ -17,10 +17,14 @@ BLOB_CONTAINER = "tif-images"
 LOCAL_BLOB_PATH = <local_path_to_download_blob_storage>
 DATA_DIR = <local_path_to_data_dir>
 <<<<<<< HEAD
+<<<<<<< HEAD
 OSM_DIR = <path_to_dir_to_download_osm_data>
 ```
 please make sure **never** to commit this file into Git.
 =======
+=======
+OSM_DIR = <path_to_dir_to_download_osm_data>
+>>>>>>>  Exploring OSM data initial code.
 ```
 please make sure never to commit this file into Git.
 >>>>>>>  Adds a separate dssg directory for new code created by dssg members
