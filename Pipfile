@@ -10,6 +10,7 @@ pandas = "*"
 tqdm = "*"
 azure-storage-blob = "*"
 azure-mgmt-storage = "*"
+python-dotenv = "*"
 
 [dev-packages]
 autopep8 = "*"
