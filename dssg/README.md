@@ -12,6 +12,7 @@ AZURE_URL = <path_to_omdena_azure_blob_storage>
 BLOB_CONTAINER = "tif-images"
 LOCAL_BLOB_PATH = <local_path_to_download_blob_storage>
 DATA_DIR = <local_path_to_data_dir>
+OSM_DIR = <path_to_dir_to_download_osm_data>
 ```
 please make sure never to commit this file into Git.
 In your `DATA_DIR` store the shape files related to india in `gadm36_shp` folder.
