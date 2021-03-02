@@ -12,5 +12,9 @@
 
 #... even if they are in subdirectories
 !*/
-# ignore directories 
-.ipynb_checkpoints/
+*.csv
+*.ipynb_checkpoints*
+*.svg
+*.tsv
+*.json
+*.tfevents
