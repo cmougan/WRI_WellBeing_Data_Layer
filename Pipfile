@@ -36,6 +36,13 @@ pillow = "*"
 osmviz = "*"
 rasterio = "*"
 nbdime = "*"
+seaborn = "*"
+pandas-profiling = "*"
+sklearn = "*"
+category-encoders = "*"
+catboost = "*"
+shap = "*"
+modapsclient = "*"
 
 [dev-packages]
 autopep8 = "*"

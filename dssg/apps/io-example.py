@@ -1,4 +1,4 @@
-from dataio.azure_blob_downloader import *
+from dssg.dataio.azure_blob_downloader import *
 
 
 def main():

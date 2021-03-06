@@ -3,6 +3,9 @@
 <!-- TOC -->
 - [India Well-Being](#india-well-being)
   - [How to setup the environment](#how-to-setup-the-environment)
+  - [Download Nighttime Lights from NASA Site](#download-nighttime-lights-from-nasa-site)
+    - [How to create LADS Token for downloading Night Time Lights Files](#how-to-create-lads-token-for-downloading-night-time-lights-files)
+    - [How to use the python script](#how-to-use-the-python-script)
 
 
 ## How to setup the environment
@@ -13,6 +16,9 @@ BLOB_CONTAINER = "tif-images"
 LOCAL_BLOB_PATH = <local_path_to_download_blob_storage>
 DATA_DIR = <local_path_to_data_dir>
 OSM_DIR = <path_to_dir_to_download_osm_data>
+NTL_HDF5_DIR = <path_to_dir_to_download_hdf5_files>
+NTL_TIF_DIR = <path_to_store_hdf5_converted_to_tiff>
+LADS_TOKEN = <lads token as obtained from LADS site>
 ```
 please make sure **never** to commit this file into Git.
 
@@ -23,4 +29,33 @@ In your `DATA_DIR` store the shape files related to india in `gadm36_shp` folder
 ```
 pipenv shell
 pipenv install
+```
+
+## Download Nighttime Lights from NASA Site
+### How to create LADS Token for downloading Night Time Lights Files
+
+- Create a login on [Earth Data](https://urs.earthdata.nasa.gov/users/new)
+- Login by going to [Profile -> Earthdata Login](https://urs.earthdata.nasa.gov/)
+- Select [Profile -> Generate Token](https://ladsweb.modaps.eosdis.nasa.gov/tools-and-services/data-download-scripts/#generate-token)from the top menu
+
+### How to use the python script
+
+- Run the script `download-nightlights.py` from command line using the following steps
+  
+```
+pipenv shell
+python dssg/apps/download-nightlights.py <district_name> <start_date> <end_date>
+```
+an example : `python dssg/apps/download-nightlights.py 'Araria' '2015-01-01' '2015-01-05'`. 
+- Before running the script make sure to set the following variables in the `.env` file: 
+  - `NTL_HDF5_DIR` where all the h5 files will be downloaded, 
+  - `NTL_TIF_DIR` where all the geo tiff files converted from h5 files are stored.
+  - `LADS_TOKEN` that you created.
+
+- After the script finishes you will find the following file e.g., `araria-2015-01-01-2015-01-05.json` created in the `NTL_HDF5_DIR`. This will contain the list of all files associated with a district in the date range. e.g.,
+```
+"district_id": 61, 
+"start_time": "2015-01-01", 
+"end_time": "2015-01-05", 
+"file_list": ["VNP46A2.A2015001.h26v06.001.2020220053423.h5", "VNP46A2.A2015002.h26v06.001.2020220091927.h5", "VNP46A2.A2015003.h26v06.001.2020220134728.h5", "VNP46A2.A2015004.h26v06.001.2020220174848.h5", "VNP46A2.A2015005.h26v06.001.2020220232713.h5"]
 ```
