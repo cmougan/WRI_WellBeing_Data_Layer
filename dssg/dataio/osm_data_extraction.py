@@ -17,6 +17,13 @@ def extract_district_dataframe(countryGDF: gpd.geodataframe.GeoDataFrame, distri
     return district_gdf
 
 
+def district_extents(district_gdf: gpd.geodataframe.GeoDataFrame) -> (float, float, float, float):
+    district_bbox = district_gdf.bounds
+    w, s, e, n = (district_bbox.minx.values[0], district_bbox.miny.values[0],
+                  district_bbox.maxx.values[0], district_bbox.maxy.values[0])
+    return (w, s, e, n)
+
+
 def plot_district_boundary_on_osm_tile(district_gdf: gpd.geodataframe.GeoDataFrame, figsize: int, linewidth: float, zoom: int):
     district_ax = district_gdf.plot(figsize=(
         figsize, figsize), alpha=0.5, edgecolor='k', facecolor="none", linewidth=linewidth)
@@ -24,9 +31,7 @@ def plot_district_boundary_on_osm_tile(district_gdf: gpd.geodataframe.GeoDataFra
 
 
 def write_district_osm_tile(district_gdf: gpd.geodataframe.GeoDataFrame, filename: str) -> bool:
-    district_bbox = district_gdf.bounds
-    w, s, e, n = (district_bbox.minx.values[0], district_bbox.miny.values[0],
-                  district_bbox.maxx.values[0], district_bbox.maxy.values[0])
+    (w, s, e, n) = district_extents(district_gdf)
     img, ex = ctx.bounds2raster(w, s, e, n, ll=True, path=os.environ.get(
         "OSM_DIR") + filename, source=ctx.providers.CartoDB.Positron)
     if img.size != 0:

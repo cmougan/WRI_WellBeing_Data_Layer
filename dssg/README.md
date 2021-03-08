@@ -5,6 +5,7 @@
   - [How to setup the environment](#how-to-setup-the-environment)
   - [Download Nighttime Lights from NASA Site](#download-nighttime-lights-from-nasa-site)
     - [How to create LADS Token for downloading Night Time Lights Files](#how-to-create-lads-token-for-downloading-night-time-lights-files)
+    - [Add dssg directory to PYTHONPATH](#add-dssg-directory-to-pythonpath)
     - [How to use the python script](#how-to-use-the-python-script)
 
 
@@ -37,6 +38,11 @@ pipenv install
 - Create a login on [Earth Data](https://urs.earthdata.nasa.gov/users/new)
 - Login by going to [Profile -> Earthdata Login](https://urs.earthdata.nasa.gov/)
 - Select [Profile -> Generate Token](https://ladsweb.modaps.eosdis.nasa.gov/tools-and-services/data-download-scripts/#generate-token)from the top menu
+
+### Add dssg directory to PYTHONPATH
+- To be able to work with all modules add the dssg directory to python path:
+  - In Linux to your `.bashrc` add  `export PYTHONPATH=<path_to_WRI_India_ext/dssg/>:$PYTHONPATH`
+  - For Windows follow the instructions [here](https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-so-it-finds-my-modules-packages)
 
 ### How to use the python script
 
