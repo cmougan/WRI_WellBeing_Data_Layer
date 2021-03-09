@@ -3,6 +3,7 @@ import geopandas as gpd
 import os
 from dotenv import load_dotenv
 from osgeo import gdal, ogr, osr
+from shapely.geometry import Polygon
 import matplotlib.pyplot as plt
 
 
@@ -49,6 +50,8 @@ def extract_district_voronoi_clipped(india_voronoi_gpd: gpd.geodataframe.GeoData
 
     return district_voronoi_gpd
 
+# Clip based method : more expensive
+
 
 def extract_district_voronoi(india_voronoi_gpd: gpd.geodataframe.GeoDataFrame, district_gdf: gpd.geodataframe.GeoDataFrame) -> gpd.geodataframe.GeoDataFrame:
     district_voronoi_clipped = extract_district_voronoi_clipped(
@@ -58,6 +61,14 @@ def extract_district_voronoi(india_voronoi_gpd: gpd.geodataframe.GeoDataFrame, d
                                     'geometry'] = india_voronoi_gpd.at[index, 'geometry']
 
     return district_voronoi_clipped
+
+# Join based method : less expensive as oppose to clip based method above.
+
+
+def extract_district_voronoi_wo_clipping(india_voronoi_gpd: gpd.geodataframe.GeoDataFrame, district_gdf: gpd.geodataframe.GeoDataFrame) -> gpd.geodataframe.GeoDataFrame:
+    district_voronoi_joined = gpd.sjoin(
+        india_voronoi_gpd, district_gdf, op='intersects')
+    return district_voronoi_joined
 
 
 def plot_district_voronoi(voronoi_gpd: gpd.geodataframe.GeoDataFrame, area_name: str):

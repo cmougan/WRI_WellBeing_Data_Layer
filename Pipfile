@@ -43,6 +43,7 @@ category-encoders = "*"
 catboost = "*"
 shap = "*"
 modapsclient = "*"
+line-profiler = "*"
 
 [dev-packages]
 autopep8 = "*"
