@@ -1,4 +1,4 @@
-import dssg.dataio.osm_data_extraction as ode
+import dataio.osm_data_extraction as ode
 import geopandas as gpd
 import os
 from dotenv import load_dotenv
@@ -39,7 +39,7 @@ def clean_initial_voronoi_shape_file(input_voronoi_shp: str, output_voronoi_shp:
     outfile = None
 
 
-def extract_district_voronoi(india_voronoi_gpd: gpd.geodataframe.GeoDataFrame, district_gdf: gpd.geodataframe.GeoDataFrame) -> gpd.geodataframe.GeoDataFrame:
+def extract_district_voronoi_clipped(india_voronoi_gpd: gpd.geodataframe.GeoDataFrame, district_gdf: gpd.geodataframe.GeoDataFrame) -> gpd.geodataframe.GeoDataFrame:
     (district_poly, district_graph) = ode.create_district_knots_and_edges_model(
         district_gdf)
     district_voronoi_gpd = gpd.clip(india_voronoi_gpd, district_poly)
@@ -50,10 +50,20 @@ def extract_district_voronoi(india_voronoi_gpd: gpd.geodataframe.GeoDataFrame, d
     return district_voronoi_gpd
 
 
-def plot_district_voronoi(voronoi_gpd: gpd.geodataframe.GeoDataFrame, district_name: str):
+def extract_district_voronoi(india_voronoi_gpd: gpd.geodataframe.GeoDataFrame, district_gdf: gpd.geodataframe.GeoDataFrame) -> gpd.geodataframe.GeoDataFrame:
+    district_voronoi_clipped = extract_district_voronoi_clipped(
+        india_voronoi_gpd, district_gdf)
+    for index, row in district_voronoi_clipped.iterrows():
+        district_voronoi_clipped.at[index,
+                                    'geometry'] = india_voronoi_gpd.at[index, 'geometry']
+
+    return district_voronoi_clipped
+
+
+def plot_district_voronoi(voronoi_gpd: gpd.geodataframe.GeoDataFrame, area_name: str):
     fig, ax = plt.subplots(1, 1, figsize=(10, 10))
     voronoi_gpd.plot(ax=ax)
-    ax.set_title("Clipped Voronoi of " + district_name)
+    ax.set_title("Voronoi tessellation of " + area_name)
     ax.set_axis_off()
     plt.axis('equal')
     plt.show()

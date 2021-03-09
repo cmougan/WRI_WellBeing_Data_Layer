@@ -3,7 +3,7 @@ from multiprocessing.pool import ThreadPool
 import geopandas as gpd
 import os
 from dotenv import load_dotenv
-import dssg.dataio.osm_data_extraction as ode
+import dataio.osm_data_extraction as ode
 import modapsclient
 from osgeo import ogr, gdal
 from gdalconst import *

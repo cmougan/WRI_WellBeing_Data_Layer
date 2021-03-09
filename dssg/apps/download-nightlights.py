@@ -1,8 +1,8 @@
 # Import argparse library
 import argparse
 import os
-import dssg.dataio.ntl_data_extraction as nde
-import dssg.dataio.osm_data_extraction as ode
+import dataio.ntl_data_extraction as nde
+import dataio.osm_data_extraction as ode
 import geopandas as gpd
 from dotenv import load_dotenv
 
