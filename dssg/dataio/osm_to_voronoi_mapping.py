@@ -26,7 +26,7 @@ def clean_initial_voronoi_shape_file(input_voronoi_shp: str, output_voronoi_shp:
     voronoi_layer = voronoi_ds.GetLayer(0)
     for feature in voronoi_layer:
         ingeom = feature.GetGeometryRef()
-        outgeom = ingeom.Centroid().Buffer(1.0)
+        outgeom = ingeom  # .Centroid().Buffer(1.0)
 
         outFeature = ogr.Feature(featureDefn)
         outFeature.SetGeometry(outgeom)
