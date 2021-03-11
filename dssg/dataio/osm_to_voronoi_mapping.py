@@ -1,4 +1,4 @@
-import dataio.osm_data_extraction as ode
+import dssg.dataio.osm_data_extraction as ode
 import geopandas as gpd
 import os
 from dotenv import load_dotenv
@@ -78,3 +78,10 @@ def plot_district_voronoi(voronoi_gpd: gpd.geodataframe.GeoDataFrame, area_name:
     ax.set_axis_off()
     plt.axis('equal')
     plt.show()
+
+
+def write_district_voronoi_to_shapefile(district_voronoi_gpd: gpd.geodataframe.GeoDataFrame, filename: str):
+    crs = {'init': 'epsg:4326'}
+    new_district_gpd = gpd.GeoDataFrame(
+        district_voronoi_gpd, geometry=district_voronoi_gpd.geometry, crs=crs)
+    district_voronoi_gpd.to_file(driver='ESRI Shapefile', filename=filename)

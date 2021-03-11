@@ -62,6 +62,14 @@ def create_district_knots_and_edges_model(district_gdf: gpd.geodataframe.GeoData
     return district_poly, district_graph
 
 
+def create_knots_and_edges_from_boundary(district_voronoi_gdf: gpd.geodataframe.GeoDataFrame, cs: str) -> (Polygon, networkx.classes.multidigraph.MultiDiGraph):
+    district_poly = district_voronoi_gdf.unary_union
+    ox.config(overpass_settings=cs)
+    district_graph = ox.graph_from_polygon(
+        district_poly, truncate_by_edge=False, network_type='all', retain_all=True, )
+    return (district_poly, district_graph)
+
+
 def extract_osm_csv(district_poly: Polygon, tags: dict) -> pd.DataFrame:
     """
     Returns the data frame after extraction and writes the dataframe to csv file
