@@ -18,4 +18,5 @@
 *.tsv
 *.json
 *.tfevents
+.idea*
 
