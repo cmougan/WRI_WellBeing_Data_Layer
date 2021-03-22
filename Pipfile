@@ -43,6 +43,7 @@ category-encoders = "*"
 catboost = "*"
 shap = "*"
 modapsclient = "*"
+pyqt5 = "*"
 
 [dev-packages]
 autopep8 = "*"
