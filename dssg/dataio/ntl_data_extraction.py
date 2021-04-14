@@ -61,7 +61,7 @@ def run_downloader(process: int, file_urls: list):
         print(r)
 
 
-def convert_h5_to_geotiff(filename: str) -> bool:
+def convert_hdf5_to_geotiff(filename: str) -> bool:
     from pathlib import Path
 
     ogr.UseExceptions()
@@ -103,4 +103,4 @@ def parallel_conversion_to_tiff():
     from os import listdir
 
     p = Pool(12)
-    p.map(convert_h5_to_geotiff, listdir(os.environ.get("NTL_HDF5_DIR")))
+    p.map(convert_hdf5_to_geotiff, listdir(os.environ.get("NTL_HDF5_DIR")))
