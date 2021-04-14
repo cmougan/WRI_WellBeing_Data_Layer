@@ -12,3 +12,5 @@
 
 #... even if they are in subdirectories
 !*/
+# ignore directories 
+.ipynb_checkpoints/
