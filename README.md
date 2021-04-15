@@ -17,6 +17,8 @@ The aim is to create a model for India that can be adapted and scaled to other c
 ## The Data
 
 ### Demographic Health Surveys
+#### Introduction
+#### 
 ### Open Street Maps Data
 ### Night Time Light Data
 
@@ -24,7 +26,14 @@ The aim is to create a model for India that can be adapted and scaled to other c
 
 ## Modeling
 
-## Conclussions
+## Conclusions
 
 ## Next Steps
+
+#### Participants
+Sunayana Ghosh
+Gijs van den Dool
+Rohan Nadeem 
+Carlos Mougan
+#### Referencees
 
