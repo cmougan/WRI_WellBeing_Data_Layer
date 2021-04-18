@@ -18,8 +18,19 @@ The aim is to create a model for India that can be adapted and scaled to other c
 
 ### Demographic Health Surveys
 #### Introduction
+Demographic Health Surveys collect information on population, health, and nutrition for each state and union territory. They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF) and United Nations. All datasets are easily available at their website.
+
+#### Omdena's Dataset
+The team analyzed a dataset already cleaned by the Omdena Team. Although the dataset was skewed towards the poorest wealth class, the unbalance lied within 1 standard deviation, warranting the dataset workable.  
+
 #### 
 ### Open Street Maps Data
+#### Introduction
+OpenStreetMap (OSM) is an opensource project that crowdsources the world map and has made it available totally free of cost. The data quality is generally seen as reliable although it varies across the world. 
+
+#### Data set
+Datasets were downloaded via the OSM api. For Minimum Viable Product purpose, data was downloaded only for the Maharashtra state of India. The dataset contained important information like coordinates and counts of geographical landmarks like highways, hospitals and educational institutes. 
+
 ### Night Time Light Data
 
 ## Exploratory Data Analysis
@@ -31,9 +42,9 @@ The aim is to create a model for India that can be adapted and scaled to other c
 ## Next Steps
 
 #### Participants
+Carlos Mougan
 Sunayana Ghosh
 Gijs van den Dool
 Rohan Nadeem 
-Carlos Mougan
 #### Referencees
 
