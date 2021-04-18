@@ -1,4 +1,7 @@
 [![macos-catalina](https://img.shields.io/badge/macos-catalina-brightgreen.svg)](https://www.apple.com/macos/catalina-preview)
+[![black](https://img.shields.io/badge/code%20style-black-000000.svg)(https://github.com/psf/black)
+
+
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
     
