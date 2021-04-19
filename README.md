@@ -100,15 +100,17 @@ The data was explored but due to a pressing need of computational resources and 
 
 We tend to judge a model's generalization error by the gap between ints performance in training and test.
 For this matter its important to strategically partition a dataset in a way that resembles what happens on the desired production environment.
-Due to the few samples in the dataset restrictions, we performed a Leave One Out evaluation.
+Due to the few samples in the dataset restrictions, we performed a Leave One Out evaluation (LOOCV).
+ Leave-one-out cross-validation, or LOOCV, is a configuration of k-fold cross-validation where k is set to the number of examples in the dataset.
+
 ![Leave One Out Cross Validation](images/LOOCV.gif)
 
-
-Typically we choose training and test data by randomly partitioning examples from the same distribution. We then
-judge a model’s generalization error by the gap between
-its performance on training and test data
+LOOCV is a computationally expensive procedure to perform,
+although it results in a reliable and unbiased estimate of model performance.
 
 ### Machine learning pipeline
+
+
 ##### Classification Models
 A number classification models were tested including decision trees, Logistic regression and Catboost. 
 Their performance was compared on basis of Mean Absolute Error. 

@@ -1,0 +1,3 @@
+[submodule "Deliverables/WRI_S4G"]
+	path = Deliverables/WRI_S4G
+	url = https://github.com/cmougan/WRI_S4G.git
