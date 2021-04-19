@@ -2,14 +2,36 @@
 [![black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
     
-# WRI_WellBeing_Data_Layer
+# WRI Creating a well-being data layer.
+
+This project contains the code, papers and derivables for the DSSG project *Creating a well-being data layer using machine learning, satellite imagery and ground-truth data*
+
+In the long term, we are building a tool that can be extended to predict the wealth and economic factor of any given area in the world. More information on the architecture and implementation below.
+
+# Table of contents
+- [About](#About)
+- [The Data](#The-Data)
+- [Architecture](#architecture)
+  - [General Pipeline](#general-pipeline)
+  - [Human-in-the-loop Annotation Pipeline](#human-in-the-loop-annotation-pipeline)
+  - [Classifier Pipeline](#classifier-pipeline)
+- [Results](#results)
+  - [Incentive Detection](#incentive-detection)
+  - [Incentive Instrument Classification](#incentive-instrument-classification)
+- [Development](#development)
+  - [Getting Started](#getting-started)
+  - [Main Components](#main-components)
+  - [Contribution Guidelines](#contribution-guidelines)
+  - [Project Organization](#project-organization)
+- [Background, Motivation and Impact](#background-motivation-and-impact)
+
 - The scope of the project ✅
 - The data received and requested deliverables from the project partner ✅
 - Methodology when analyzing the data and creating the deliverables ✅
 - The final format of the deliverables ✅
 - Next steps for incorporating the final deliverable with the project partner ✅
 
-## Project Scope
+## About
 Conducting economic surveys requires huge resources; thus, modern means of acquiring this information using publicly available data and open source technologies create the possibilities of replacing current processes.
 Satellite images can act as a proxy for existing data collection techniques such as surveys and census to predict the economic well-being of a region.
 
