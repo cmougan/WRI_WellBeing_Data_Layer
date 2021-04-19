@@ -1,36 +1,34 @@
-[![macos-catalina](https://img.shields.io/badge/macos-catalina-brightgreen.svg)](https://www.apple.com/macos/catalina-preview)
 [![black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
     
 # WRI Creating a well-being data layer.
 
-This project contains the code, papers and derivables for the DSSG project *Creating a well-being data layer using machine learning, satellite imagery and ground-truth data*
+This project contains the code, papers and deliverables for the DSSG project *Creating a well-being data layer using machine learning, satellite imagery and ground-truth data*
 
 In the long term, we are building a tool that can be extended to predict the wealth and economic factor of any given area in the world. More information on the architecture and implementation below.
 
 # Table of contents
 - [About](#About)
+
 - [The Data](#The-Data)
-- [Architecture](#architecture)
-  - [General Pipeline](#general-pipeline)
-  - [Human-in-the-loop Annotation Pipeline](#human-in-the-loop-annotation-pipeline)
-  - [Classifier Pipeline](#classifier-pipeline)
-- [Results](#results)
-  - [Incentive Detection](#incentive-detection)
-  - [Incentive Instrument Classification](#incentive-instrument-classification)
+    - [Demographic Health Survey](#Demographic-Health-Surveys)
+    - [Open Street Maps Data](#Open-Street-Maps-Data)
+    - [Night Time Light Data](#Night-Time-Light-Data)
+    
+- [Methodology](#Night-Time-Light-Data)
+    - [Exploratory Data Analysis](#Exploratory-Data-Analysis)
+    - [Machine learning pipeline](#Machine-Learning-Pipeline)
+    
+ - [Future Work](#Future-Work)
+  
 - [Development](#development)
   - [Getting Started](#getting-started)
   - [Main Components](#main-components)
   - [Contribution Guidelines](#contribution-guidelines)
-  - [Project Organization](#project-organization)
-- [Background, Motivation and Impact](#background-motivation-and-impact)
+  
+- [Project Organization](#project-organization)
 
-- The scope of the project ✅
-- The data received and requested deliverables from the project partner ✅
-- Methodology when analyzing the data and creating the deliverables ✅
-- The final format of the deliverables ✅
-- Next steps for incorporating the final deliverable with the project partner ✅
 
 ## About
 Conducting economic surveys requires huge resources; thus, modern means of acquiring this information using publicly available data and open source technologies create the possibilities of replacing current processes.
@@ -70,6 +68,7 @@ The project had following deliverables:
 1. A model prototype
 2. A report with an extensive evaluation of the model 
 
+
 The deliverables will be shared in the following manner:
 1. A Github repository containing all the code data and documentation
 2. A report explaining model performance and decision making process (.pptx)
@@ -93,7 +92,8 @@ The data was explored but due to a pressing need of computational resources and 
 A number classification models were tested including decision trees, Logistic regression and Catboost. Their performance was compared on basis of Mean Absolute Error. The impact of encoding technique was also taken into consideration: experiments were carried out with both One Hot Encoding, Label encoding and Catboost Encoder. 
 
 ##### Regression Models
-The problem was also analyzed as a regression model. Numerous models were tested including Lasso, Linear Regression, Catboost, Decision Tree Regression. Their performance was compared on basis of Mean Absolute Error. The impact of encoding technique was also taken into consideration: experiments were carried out with both One Hot Encoding, Label encoding and Catboost Encoder. 
+The problem was also analyzed as a regression model.
+Numerous models were tested including Lasso, Linear Regression, Catboost, Decision Tree Regression. Their performance was compared on basis of Mean Absolute Error. The impact of encoding technique was also taken into consideration: experiments were carried out with both One Hot Encoding, Label encoding and Catboost Encoder. 
 
 ### Conclusions
 'Hybrid' regression model (Decision Tree Regression) performed reletively better. Mean Absolute Error was only 0.64 for a range of scores 1 to 5 (1 representing Poorest wealth class and 5 representing the richest wealth class).
