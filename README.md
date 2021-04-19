@@ -108,7 +108,24 @@ Due to the few samples in the dataset restrictions, we performed a Leave One Out
 LOOCV is a computationally expensive procedure to perform,
 although it results in a reliable and unbiased estimate of model performance.
 
-### Machine learning pipeline
+### Label Transformation.
+The origina wealth index provided by the DHS data, was a classification between 1-5 of the wealth level of a certain district.
+`
+{1: Poorest 
+2: Poorer
+3: Middle
+4: Richer
+5: Richest}
+`
+This label even if at first might seem a multiclassification it is a continuous feature that has been post procesed and binarized into categories. 
+
+We treat this problem as a regression task than then need to be binarized again in the post procesing part of the ML pipeline. 
+In the meanwhile we use the Mean Absolute Error as a intuitive evaluation metric.
+
+
+### Explainable Machine learning pipeline
+Due to the possible impact of this project in public policy we advocate for an explainable ML approach.
+![Trained Decision Tree](images/tree_ohe.png)
 
 
 ##### Classification Models
@@ -130,7 +147,7 @@ An added benefit is the easy explainable of the model while preserving a high ac
 
 ### Deliverables 
 The project had following deliverables:
-1. A model prototype
+1. Project final [presentation](https://github.com/cmougan/WRI_WellBeing_Data_Layer/blob/master/Deliverables/Presentation.pdf) 
 2. A report with an extensive evaluation of the model 
 
 
