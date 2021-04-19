@@ -47,12 +47,22 @@ The aim of the project is to propose an alternative to Demographic Health Survey
 ### Demographic Health Surveys
 
 Demographic Health Surveys collect information on population, health, and nutrition for each state and union territory.
-They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF) and United Nations.
+They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF) and the United Nations.
 All datasets are easily available at their website.
 
-The dataset was explored via Pandas Profiling libary. 
-The target was to correlate wealth class with other factors. 
-A few correlations were noticed: the problem was identified to be non-linear and multivariable, the dataset, highly related. 
+The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the poorest wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing.
+
+The following observations were made:
+- Wealth fields i.e Wealth index and wealth class had almost a perfectly linear normal distribution (verfied by box-whisker graphs). 
+- Although population density was found to have a positive pearson correlation with wealth index, it was very weak and statistically insignificant  (0.223).
+- Richer populations use flush-toilets (the box whisker was distinct from all others on the wealth axis)
+- While the richer populations tend to use cement roofings, the distribution of materials is highly diffused. Hence a linear relation does not exist.
+- Richer families are electrified.
+- The choice of drinking water is highly diffused between the different mediums with no clear relation.
+- Urban areas are wealthier than rural ones. 
+
+
+The problem was identified to be non-linear and multivariable but highly inter-related. 
 
 
 ### Open Street Maps Data
@@ -126,15 +136,20 @@ The deliverables will be shared in the following manner:
 ## Project Organization
 ### Solve For Good Collaborators
 [Carlos Mougan](https://www.linkedin.com/in/carlosmougan/)
+
 [Sunayana Ghosh](https://www.linkedin.com/in/sunayanag/)
+
 [Gijs van den Dool](https://www.linkedin.com/in/gvddool/)
+
 [Rohan Nadeem ](https://www.linkedin.com/in/rohaan-nadeem/)
 ### Word Resources Institute
 [Rong Fang](https://www.linkedin.com/in/rongfang1/)
+
 [Kathleen Buckingham](https://www.linkedin.com/in/kathleenbuckingham/)
 
 ### Omdena
 [Rehab Emam](https://www.linkedin.com/in/rehabemam228/)
+
 [Precioso Gabrillo](https://www.linkedin.com/in/precioso-gabrillo-iii/)
 ...
 
