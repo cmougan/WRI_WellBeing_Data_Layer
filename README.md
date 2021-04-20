@@ -50,9 +50,11 @@ Demographic Health Surveys collect information on population, health, and nutrit
 They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF) and the United Nations.
 All datasets are easily available at their website.
 
-The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the poorest wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing.
+The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the poorest wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing. 
 
-The following observations were made:
+![Slight But Workable Skew](images/variance.png)
+
+Box and whisker plots as well as Violin plots were used to make the following observations:
 - Wealth fields i.e Wealth index and wealth class had almost a perfectly linear normal distribution (verfied by box-whisker graphs). 
 - Although population density was found to have a positive pearson correlation with wealth index, it was very weak and statistically insignificant  (0.223).
 - Richer populations use flush-toilets (the box whisker was distinct from all others on the wealth axis)
@@ -61,6 +63,15 @@ The following observations were made:
 - The choice of drinking water is highly diffused between the different mediums with no clear relation.
 - Urban areas are wealthier than rural ones. 
 
+![Richer Families Are Electrified](images/electricity.png)
+
+![Richer Families Use Flush-Toilets](images/richer_flush.png)
+
+![Urban Areas Are Richer](images/urban and rural.png)
+
+![Urban Areas Are Richer](images/water source.png)
+
+All the images are available in images folder and the '(DSSG/WRI) DHS Analysis .ipynb' notebook
 
 The problem was identified to be non-linear and multivariable but highly inter-related. 
 
