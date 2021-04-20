@@ -6,7 +6,7 @@
 
 This project contains the code, papers and deliverables for the DSSG project *Creating a well-being data layer using machine learning, satellite imagery and ground-truth data*
 
-In the long term, we are building a tool that can be extended to predict the wealth and economic factor of any given area in the world. 
+In the long term, we are building a tool that can be extended to predict the wealth and economic factor of any given area in india. 
 More information on the architecture and implementation below.
 
 # Table of contents
