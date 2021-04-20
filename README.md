@@ -71,7 +71,7 @@ Box and whisker plots as well as Violin plots were used to make the following ob
 
 ![Urban Areas Are Richer](images/water_source.png)
 
-All the images are available in images folder and the '(DSSG/WRI) DHS Analysis .ipynb' notebook
+All the images are available in images folder and in the '(DSSG/WRI) DHS Analysis .ipynb' notebook
 
 The problem was identified to be non-linear and multivariable but highly inter-related. 
 
@@ -114,13 +114,15 @@ For this matter its important to strategically partition a dataset in a way that
 Due to the few samples in the dataset restrictions, we performed a Leave One Out evaluation (LOOCV).
  Leave-one-out cross-validation, or LOOCV, is a configuration of k-fold cross-validation where k is set to the number of examples in the dataset.
 
+
+
 ![Leave One Out Cross Validation](images/LOOCV.gif)
 
 LOOCV is a computationally expensive procedure to perform,
 although it results in a reliable and unbiased estimate of model performance.
 
 ### Label Transformation.
-The origina wealth index provided by the DHS data, was a classification between 1-5 of the wealth level of a certain district.
+The original wealth index provided by the DHS data, was a classification between 1-5 of the wealth level of a certain district.
 `
 {1: Poorest 
 2: Poorer
@@ -128,11 +130,15 @@ The origina wealth index provided by the DHS data, was a classification between 
 4: Richer
 5: Richest}
 `
-This label even if at first might seem a multiclassification it is a continuous feature that has been post procesed and binarized into categories. 
+This label even if at first might seem a multiclassification is a continuous feature that has been post procesed and binarized into categories. 
 
 We treat this problem as a regression task than then need to be binarized again in the post procesing part of the ML pipeline. 
 In the meanwhile we use the Mean Absolute Error as a intuitive evaluation metric.
 
+The following graph summaries relative performance of the best performing regression models. The best model is highlighted:
+![Leave One Out Cross Validation](images/best mae.PNG)
+
+Note: initial evaluations were carried out on Wealth Index but final model was trained to predict wealth class. Wealth class is based on Wealth Index so the comparative scores hold valid. 
 
 ### Explainable Machine learning pipeline
 Due to the possible impact of this project in public policy we advocate for an explainable ML approach.
@@ -142,11 +148,11 @@ Due to the possible impact of this project in public policy we advocate for an e
 ##### Classification Models
 A number classification models were tested including decision trees, Logistic regression and Catboost. 
 Their performance was compared on basis of Mean Absolute Error. 
-The impact of encoding technique was also taken into consideration: experiments were carried out with both One Hot Encoding, Label encoding and Catboost Encoder. 
+The impact of encoding technique was also taken into consideration: experiments were carried out with One Hot Encoding, Label encoding and Catboost Encoder. 
 
 ##### Regression Models
 The problem was also analyzed as a regression model.
-Numerous models were tested including Lasso, Linear Regression, Catboost, Decision Tree Regression. Their performance was compared on basis of Mean Absolute Error. The impact of encoding technique was also taken into consideration: experiments were carried out with both One Hot Encoding, Label encoding and Catboost Encoder. 
+Numerous models were tested including Lasso, Linear Regression, Catboost and Decision Tree Regression. Their performance was compared on basis of Mean Absolute Error. The impact of encoding technique was also taken into consideration: experiments were carried out with One Hot Encoding, Label encoding and Catboost Encoder. 
 
 ## Results
 
