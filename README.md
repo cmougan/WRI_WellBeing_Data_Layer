@@ -138,7 +138,7 @@ In the meanwhile we use the Mean Absolute Error as a intuitive evaluation metric
 
 The following graph summaries relative performance of the best performing regression models. The best model is highlighted:
 
-![Leave One Out Cross Validation](images/best mae.PNG)
+![Leave One Out Cross Validation](images/"best mae.PNG")
 
 Note: initial evaluations were carried out on Wealth Index but final model was trained to predict wealth class. Wealth class is based on Wealth Index so the comparative scores hold valid. 
 
