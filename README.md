@@ -67,9 +67,9 @@ Box and whisker plots as well as Violin plots were used to make the following ob
 
 ![Richer Families Use Flush-Toilets](images/richer_flush.png)
 
-![Urban Areas Are Richer](images/urban and rural.png)
+![Urban Areas Are Richer](images/urban_and_rural.png)
 
-![Urban Areas Are Richer](images/water source.png)
+![Urban Areas Are Richer](images/water_source.png)
 
 All the images are available in images folder and the '(DSSG/WRI) DHS Analysis .ipynb' notebook
 
