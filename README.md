@@ -50,9 +50,11 @@ Demographic Health Surveys collect information on population, health, and nutrit
 They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF) and the United Nations.
 All datasets are easily available at their website.
 
-The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the poorest wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing.
+The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the poorest wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing. 
 
-The following observations were made:
+![Slight But Workable Skew](images/variance.png)
+
+Box and whisker plots as well as Violin plots were used to make the following observations:
 - Wealth fields i.e Wealth index and wealth class had almost a perfectly linear normal distribution (verfied by box-whisker graphs). 
 - Although population density was found to have a positive pearson correlation with wealth index, it was very weak and statistically insignificant  (0.223).
 - Richer populations use flush-toilets (the box whisker was distinct from all others on the wealth axis)
@@ -61,6 +63,16 @@ The following observations were made:
 - The choice of drinking water is highly diffused between the different mediums with no clear relation.
 - Urban areas are wealthier than rural ones. 
 
+![Richer Families Are Electrified](images/electricity.png)
+* Richer Families Are Electrified
+
+![Richer Families Use Flush-Toilets](images/richer_flush.png)
+* Richer Families Use Flush-Toilets
+
+![Urban Areas Are Richer](images/water_source.png)
+* Urban Areas Are Richer
+
+All the images are available in images folder and in the '(DSSG/WRI) DHS Analysis .ipynb' notebook
 
 The problem was identified to be non-linear and multivariable but highly inter-related. 
 
@@ -103,13 +115,15 @@ For this matter its important to strategically partition a dataset in a way that
 Due to the few samples in the dataset restrictions, we performed a Leave One Out evaluation (LOOCV).
  Leave-one-out cross-validation, or LOOCV, is a configuration of k-fold cross-validation where k is set to the number of examples in the dataset.
 
+
+
 ![Leave One Out Cross Validation](images/LOOCV.gif)
 
 LOOCV is a computationally expensive procedure to perform,
 although it results in a reliable and unbiased estimate of model performance.
 
 ### Label Transformation.
-The origina wealth index provided by the DHS data, was a classification between 1-5 of the wealth level of a certain district.
+The original wealth index provided by the DHS data, was a classification between 1-5 of the wealth level of a certain district.
 `
 {1: Poorest 
 2: Poorer
@@ -117,11 +131,16 @@ The origina wealth index provided by the DHS data, was a classification between 
 4: Richer
 5: Richest}
 `
-This label even if at first might seem a multiclassification it is a continuous feature that has been post procesed and binarized into categories. 
+This label even if at first might seem a multiclassification is a continuous feature that has been post procesed and binarized into categories. 
 
 We treat this problem as a regression task than then need to be binarized again in the post procesing part of the ML pipeline. 
 In the meanwhile we use the Mean Absolute Error as a intuitive evaluation metric.
 
+The following graph summaries relative performance of the best performing regression models. The best model is highlighted:
+
+![Best Performing Regression Models](images/best_mae.png)
+
+Note: initial evaluations were carried out on Wealth Index but final model was trained to predict wealth class. Wealth class is based on Wealth Index so the comparative scores hold valid. 
 
 ### Explainable Machine learning pipeline
 Due to the possible impact of this project in public policy we advocate for an explainable ML approach.
@@ -131,11 +150,11 @@ Due to the possible impact of this project in public policy we advocate for an e
 ##### Classification Models
 A number classification models were tested including decision trees, Logistic regression and Catboost. 
 Their performance was compared on basis of Mean Absolute Error. 
-The impact of encoding technique was also taken into consideration: experiments were carried out with both One Hot Encoding, Label encoding and Catboost Encoder. 
+The impact of encoding technique was also taken into consideration: experiments were carried out with One Hot Encoding, Label encoding and Catboost Encoder. 
 
 ##### Regression Models
 The problem was also analyzed as a regression model.
-Numerous models were tested including Lasso, Linear Regression, Catboost, Decision Tree Regression. Their performance was compared on basis of Mean Absolute Error. The impact of encoding technique was also taken into consideration: experiments were carried out with both One Hot Encoding, Label encoding and Catboost Encoder. 
+Numerous models were tested including Lasso, Linear Regression, Catboost and Decision Tree Regression. Their performance was compared on basis of Mean Absolute Error. The impact of encoding technique was also taken into consideration: experiments were carried out with One Hot Encoding, Label encoding and Catboost Encoder. 
 
 ## Results
 
