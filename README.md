@@ -152,7 +152,9 @@ After preprocessing the data the following results were obtained.
 ![Difference of Wealth](images/diff.png)
 
 In the difference of wealth distribution we can see where our model is achieving the best results and where its failing.
+This visualization can help to gain trust in the model since metrics do not always give users. 
 
+We can note in the heatmap that most of the error are between [0.1,0.2]%.
 ### Conclusions
 
 Predictive Model that is:
