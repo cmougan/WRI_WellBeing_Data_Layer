@@ -4,7 +4,7 @@
 
 # WRI Creating a well-being data layer.
 
-This project contains the code, papers, and deliverables for the [DSSG project](https://www.solveforgood.org/)
+This project contains the code, papers, and deliverables for the [DSSG project](https://www.solveforgood.org/) with the [World Resources Institute (WRI)](https://www.wri.org/)
  *Creating a well-being data layer using machine learning, satellite imagery, and ground-truth data* [link](https://www.solveforgood.org/proj/47/)
 
 In the long term, we are building a tool that can be extended to predict the wealth and economic factors of any given area in India.
