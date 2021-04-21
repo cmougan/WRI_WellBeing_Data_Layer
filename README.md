@@ -47,7 +47,7 @@ The aim of the project is to propose an alternative to Demographic Health Survey
 Demographic Health Surveys collect information on population, health, and nutrition for each state and union territory.
 They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF) and the United Nations. The datasets used in this project were obtained from the [dhsprogram](https://dhsprogram.com/) website.
 
-The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the poorest wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing.
+The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the middle wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing.
 
 ![Slight But Workable Skew](images/wealth_labels_pie.png)
 
