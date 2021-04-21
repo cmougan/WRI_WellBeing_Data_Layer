@@ -172,11 +172,12 @@ There is a district that has a higher wealth than the rest.
 
 ### Explainable Machine learning pipeline
 
-Due to the possible impact of this project on public policy, we advocate for an explainable ML approach.
+Due to the possible impact of this project on public policy, we advocate for an explainable ML approach <a href="#ref6">[6]</a>.
 ![Trained Decision Tree](images/tree_ohe.png)
 
 For the modeling part a set of experiments to determine which machine learning estimators was performed.
-The selected estimator for this part of the project was a decision tree, due to its key performance, in a small dataset.
+The selected estimator for this part of the project was a decision tree, due to its key performance
+ and given that the data that we are working with at this stage relative small.
 This model also allows us to understand how are the ML decisions made.
 
 ## Results
@@ -186,9 +187,10 @@ After preprocessing the data the following results were obtained.
 ![Difference of Wealth](images/diff.png)
 
 In the difference of wealth distribution, we can see where our model is achieving the best results and where it's failing.
-This visualization can help to gain trust in the model since metrics do not always give users.
+This visualization can help to gain trust in the model since metrics do not always give users an understanding of a model's performance.
 
-We can note in the heatmap that most of the errors are between [0.1,0.2]%.
+We can note in the heatmap that most of the errors are between [0.1,0.2]%. This percentual error in the predictions is low
+ and provides preliminary evidence that a model should be able to perform with a high enough quality with a larger dataset.
 
 ### Conclusions
 
@@ -256,4 +258,5 @@ there is the need to ensure that the model will generalize as time goes by.
     <li is="ref3">https://eogdata.mines.edu/products/vnl/</li>
     <li is="ref4">https://viirsland.gsfc.nasa.gov/Products/NASA/BlackMarble.html</li>
     <li is="ref5">The Mythos of Model Interpretability: https://arxiv.org/abs/1606.03490</li>
+    <li is="ref6">Explainable Machine Learning for Public Policy: https://arxiv.org/pdf/2010.14374.pdf</li>
 </ol>
