@@ -3,7 +3,8 @@
 
 # WRI Creating a well-being data layer.
 
-This project contains the code, papers and deliverables for the DSSG project *Creating a well-being data layer using machine learning, satellite imagery and ground-truth data*
+This project contains the code, papers and deliverables for the [DSSG project](https://www.solveforgood.org/)
+ *Creating a well-being data layer using machine learning, satellite imagery and ground-truth data* [link](https://www.solveforgood.org/proj/47/)
 
 In the long term, we are building a tool that can be extended to predict the wealth and economic factor of any given area in india.
 More information on the architecture and implementation below.
@@ -48,35 +49,31 @@ The aim of the project is to propose an alternative to Demographic Health Survey
 Demographic Health Surveys collect information on population, health, and nutrition for each state and union territory.
 They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF) and the United Nations. The datasets used in this project were obtained from the [dhsprogram](https://dhsprogram.com/) website.
 
-The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the middle wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing.
-
+The dataset was explored manually as well as through [Pandas Profiling library](https://github.com/pandas-profiling/pandas-profiling). 
 ![Slight But Workable Skew](images/wealth_labels_pie.png)
 
-Box and whisker plots as well as Violin plots were used to make the following observations:
+Box and Violin plots were used to make the following observations:
 
-- Wealth fields i.e Wealth index and wealth class had almost a perfectly linear normal distribution (verfied by box-whisker graphs).
-- Although population density was found to have a positive pearson correlation with wealth index, it was very weak and statistically insignificant  (0.223).
-- Richer populations use flush-toilets (the box whisker was distinct from all others on the wealth axis)
-- While the richer populations tend to use cement roofings, the distribution of materials is highly diffused. Hence a linear relation does not exist.
-- Richer families are electrified.
-- The choice of drinking water is highly diffused between the different mediums with no clear relation.
+- Wealth fields i.e Wealth index and wealth class had almost a perfectly linear normal distribution.
+- Population density was found to have a positive correlation with wealth index.
+- The distribution of roof materials is highly diffused. 
+- Wealth and electricity usage is correlated.
 - Urban areas are wealthier than rural ones.
+
+
 
 ![Richer Families Are Electrified](images/electricity.png)
 
-* Richer Families Have Electricity
 
 ![Richer Families Use Flush-Toilets](images/richer_flush.png)
 
-* Richer Families Use Flush-Toilets
 
 ![Urban Areas Are Richer](images/water_source.png)
 
-* Urban Areas Are Richer
+The figures above visualize the different wealth distributions on several categorical features found on the dataset.
 
 All the images are available in images folder and in the [(DSSG/WRI) DHS Analysis.ipynb](./(DSSG_WRI)_DHS_Analysis.ipynb) notebook
 
-The problem was identified to be non-linear and multivariate but highly inter-related.
 
 ### Open Street Maps Data
 
@@ -85,12 +82,10 @@ The data quality is generally seen as reliable although it varies across the wor
 
 A python module [osm_data_extraction](./dssg/dataio/osm_data_extraction.py) was implemented to extract OSM data given the [GADM, Level 3](https://gadm.org/download_country_v3.html) shapefile and a district name. The module uses [OSMNx](https://github.com/gboeing/osmnx) which interacts with the OpenStreetMap's API to get the relevant data for a specific region and stores it in a csv file. An example usage of this module can be found in the notebook [araria_district.ipynb](./dssg/data-exploration/araria_district.ipynb).
 
-For Minimum Viable Product purpose, data was downloaded only for the Bihar state of India.
-The dataset contained important information like coordinates and counts of geographical landmarks like highways, hospitals and educational institutes.
-The team posited these landmarks might indicate wealth of the region.
 
-Due to computing resource constraint, the area of study was restricted to Araria district of Bihar state. Information extraction from the OSM data is a computational heavy operation, when the methods are scaled up to cover the whole of continental India (or another country) special attention should go to the design of the data transformation functions, and the possibility of
-parallelisation.
+Due to computing resource constraint, the area of study was restricted to Araria district of Bihar state.
+
+
 
 ### Night Time Light Data
 
@@ -100,8 +95,10 @@ The data is open and free to use for non-commercial use-cases. The Omdena counte
 
 The DSSG team looked at another data stream (NASA Black Marble <a href="#ref4">[4]</a> to look at the daily variability of the data. The parallel approach was useful to gain an understanding of the different flavours of NTL data, and how these data sources could be utilised in future projects.
 
-A python module [ntl_data_extraction](./dssg/dataio/ntl_data_extraction.py) and a command line app [download-nightlights](./dssg/apps/download-nightlights.py) were implemented to download the night light data for a given district and the date range. The implementation uses the [modapsclient](https://pypi.org/project/modapsclient/) , a RESTful client for NASA's MODIS Adaptive Processing System (MODAPS). The python module also implements a method to convert the hdf5 files to GeoTiff files for further processing. After conversion, from hdr (native format) to GeoTIFF, the daily NTL intensity tiles are available for processing. The project area (Continental India) is covered by 7 (or 8) tiles of 10x10 degrees, or 2400x2400 cells. To match the temporal window of the project (2013-2017, 2 years around the DHS 2015 census for India) the total NTL data
-repository would be more than 1825 data layers (4MB per HDR / 10MB per GeoTiff images). The difference in disk size between HDR and GeoTIFF is the compression and data type, HDR files are optimised for storage, and will contain besides the light intensity values also the data quality
+A python module [ntl_data_extraction](./dssg/dataio/ntl_data_extraction.py) and a command line app [download-nightlights](./dssg/apps/download-nightlights.py) were implemented to download the night light data for a given district and the date range.
+The implementation uses the [modapsclient](https://pypi.org/project/modapsclient/) , a RESTful client for NASA's MODIS Adaptive Processing System (MODAPS). The python module also implements a method to convert the hdf5 files to GeoTiff files for further processing. After conversion, from hdr (native format) to GeoTIFF, the daily NTL intensity tiles are available for processing. The project area (Continental India) is covered by 7 (or 8) tiles of 10x10 degrees, or 2400x2400 cells. To match the temporal window of the project (2013-2017, 2 years around the DHS 2015 census for India) the total NTL data
+repository would be more than 1825 data layers (4MB per HDR / 10MB per GeoTiff images).
+The difference in disk size between HDR and GeoTIFF is the compression and data type, HDR files are optimised for storage, and will contain besides the light intensity values also the data quality
 flags. The team used NASA’s VIIRS/NPP LunarBRDF-Adjusted Nighttime Lights data with a spatial resolution of 500m.
 
 The data was explored but due to a pressing need of computational resources and time, the data was not integrated with the other data sources and hence not utilized for solution building. We also concluded that for future computations it would be better to use annual composites of the night light data sets from the mines data repository [3], to reduce the need for large amounts of computational resources.
@@ -221,8 +218,7 @@ Future WorkSteps:
 
 [Rohan Nadeem ](https://www.linkedin.com/in/rohaan-nadeem/)
 
-[Carlos Mougan](https://www.linkedin.com/in/carlosmougan/): (Project Scoper/Manager) Contributed with the scoping of the project
-evaluation, and modeling of the task.
+[Carlos Mougan](https://www.linkedin.com/in/carlosmougan/)
 
 ### Word Resources Institute
 
