@@ -218,3 +218,4 @@ evaluation, and modeling of the task.
 
 [1] Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead: https://www.nature.com/articles/s42256-019-0048-x
 
+[2] Interpretable Machine Learning: A Guide for Making Black Box Models Explainable https://christophm.github.io/interpretable-ml-book/
