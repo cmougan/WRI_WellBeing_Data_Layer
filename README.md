@@ -82,15 +82,18 @@ The data quality is generally seen as reliable although it varies across the wor
 
 A python module [osm_data_extraction](./dssg/dataio/osm_data_extraction.py) was implemented to extract OSM data given the [GADM, Level 3](https://gadm.org/download_country_v3.html) shapefile and a district name. The module uses [OSMNx](https://github.com/gboeing/osmnx) which interacts with the OpenStreetMap's API to get the relevant data for a specific region and stores it in a csv file. An example usage of this module can be found in the notebook [araria_district.ipynb](./dssg/data-exploration/araria_district.ipynb).
 
+
 Due to computing resource constraint, the area of study was restricted to Araria district of Bihar state.
+
 
 
 ### Night Time Light Data
 
-Night time light data can highlight areas of greater economic activity as these regions tend to be reletively more lit.
-Image data to proceed with this approach was obtained via Google Earth Engine (GEE).
-GEE provides a quickly accessible collection of data images captured across timelines, light wavelenghts and satellite systems.
-The data is open and free to use for non-commerical uses.
+Night time light data can highlight areas of greater economic activity as these regions tend to be reletively more lit. Image data to proceed with this approach was obtained via Google Earth Engine (GEE). GEE provides a quickly accessible collection of data images captured across timelines, light wavelenghts and satellite systems.
+
+The data is open and free to use for non-commercial use-cases. The Omdena counterpart of this project explored the usefulness of the GEE interface and the monthly NTL images (from the mines dataset <a href="#ref3">[3]</a>
+
+The DSSG team looked at another data stream (NASA Black Marble <a href="#ref4">[4]</a> to look at the daily variability of the data. The parallel approach was useful to gain an understanding of the different flavours of NTL data, and how these data sources could be utilised in future projects.
 
 A python module [ntl_data_extraction](./dssg/dataio/ntl_data_extraction.py) and a command line app [download-nightlights](./dssg/apps/download-nightlights.py) were implemented to download the night light data for a given district and the date range.
 The implementation uses the [modapsclient](https://pypi.org/project/modapsclient/) , a RESTful client for NASA's MODIS Adaptive Processing System (MODAPS). The python module also implements a method to convert the hdf5 files to GeoTiff files for further processing. After conversion, from hdr (native format) to GeoTIFF, the daily NTL intensity tiles are available for processing. The project area (Continental India) is covered by 7 (or 8) tiles of 10x10 degrees, or 2400x2400 cells. To match the temporal window of the project (2013-2017, 2 years around the DHS 2015 census for India) the total NTL data
@@ -98,7 +101,7 @@ repository would be more than 1825 data layers (4MB per HDR / 10MB per GeoTiff i
 The difference in disk size between HDR and GeoTIFF is the compression and data type, HDR files are optimised for storage, and will contain besides the light intensity values also the data quality
 flags. The team used NASA’s VIIRS/NPP LunarBRDF-Adjusted Nighttime Lights data with a spatial resolution of 500m.
 
-The data was explored but due to a pressing need of computational resources and time, the data was not integrated with the other data sources and hence not utilized for solution building. We also concluded that for future computations it would be better to use annual composites of the night light data sets to reduce the need for large amounts of computational resources.
+The data was explored but due to a pressing need of computational resources and time, the data was not integrated with the other data sources and hence not utilized for solution building. We also concluded that for future computations it would be better to use annual composites of the night light data sets from the mines data repository [3], to reduce the need for large amounts of computational resources.
 
 The implementation of the `osm_data_extraction` and `ntl_data_extraction` modules would be crucial to scale the data processing pipeline for the rest of India or for any other country in the world.
 
@@ -215,8 +218,7 @@ Future WorkSteps:
 
 [Rohan Nadeem ](https://www.linkedin.com/in/rohaan-nadeem/)
 
-[Carlos Mougan](https://www.linkedin.com/in/carlosmougan/): (Project Scoper/Manager) Contributed with the scoping of the project
-evaluation, and modeling of the task.
+[Carlos Mougan](https://www.linkedin.com/in/carlosmougan/)
 
 ### Word Resources Institute
 
@@ -231,8 +233,11 @@ evaluation, and modeling of the task.
 [Precioso Gabrillo](https://www.linkedin.com/in/precioso-gabrillo-iii/)
 ...
 
-#### Bibliography
+### Bibliography
 
-[1] Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead: https://www.nature.com/articles/s42256-019-0048-x
-
-[2] Interpretable Machine Learning: A Guide for Making Black Box Models Explainable https://christophm.github.io/interpretable-ml-book/
+<ol> 
+    <li is="ref1"> Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead: https://www.nature.com/articles/s42256-019-0048-x</li>
+    <li is="ref2">Interpretable Machine Learning: A Guide for Making Black Box Models Explainable https://christophm.github.io/interpretable-ml-book/</li>
+    <li is="ref3">https://eogdata.mines.edu/products/vnl/</li>
+    <li is="ref4">https://viirsland.gsfc.nasa.gov/Products/NASA/BlackMarble.html</li>
+</ol>
