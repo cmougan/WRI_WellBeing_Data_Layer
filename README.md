@@ -90,7 +90,6 @@ The dataset contained important information like coordinates and counts of geogr
 The team posited these landmarks might indicate wealth of the region.
 
 Due to computing resource constraint, the area of study was restricted to Araria district of Bihar state.
-A disparity was noticed between the clusters in OSM dataset and DHS dataset. Clusters, not shared by both dataset, were removed.
 
 ### Night Time Light Data
 
@@ -99,7 +98,9 @@ Image data to proceed with this approach was obtained via Google Earth Engine (G
 GEE provides a quickly accessible collection of data images captured across timelines, light wavelenghts and satellite systems.
 The data is open and free to use for non-commerical uses.
 
-A python module [ntl_data_extraction](./dssg/dataio/ntl_data_extraction.py) and a command line app [download-nightlights](./dssg/apps/download-nightlights.py) were implemented to download the night light data for a given district and the date range. The implementation uses the [modapsclient](https://pypi.org/project/modapsclient/) , a RESTful client for NASA's MODIS Adaptive Processing System (MODAPS). The python module also implements a method to convert the hdf5 files to geotiff files for further processing. The team used NASA’s VIIRS/NPP LunarBRDF-Adjusted Nighttime Lights data. Lat-Lon grid setting was adjusted to 500m.
+A python module [ntl_data_extraction](./dssg/dataio/ntl_data_extraction.py) and a command line app [download-nightlights](./dssg/apps/download-nightlights.py) were implemented to download the night light data for a given district and the date range. The implementation uses the [modapsclient](https://pypi.org/project/modapsclient/) , a RESTful client for NASA's MODIS Adaptive Processing System (MODAPS). The python module also implements a method to convert the hdf5 files to GeoTiff files for further processing. After conversion, from hdr (native format) to GeoTIFF, the daily NTL intensity tiles are available for processing. The project area (Continental India) is covered by 7 (or 8) tiles of 10x10 degrees, or 2400x2400 cells. To match the temporal window of the project (2013-2017, 2 years around the DHS 2015 census for India) the total NTL data
+repository would be more than 1825 data layers (4MB per HDR / 10MB per GeoTiff images). The difference in disk size between HDR and GeoTIFF is the compression and data type, HDR files are optimised for storage, and will contain besides the light intensity values also the data quality
+flags. The team used NASA’s VIIRS/NPP LunarBRDF-Adjusted Nighttime Lights data with a spatial resolution of 500m. 
 
 The data was explored but due to a pressing need of computational resources and time, the data was not integrated with the other data sources and hence not utilized for solution building. We also concluded that for future computations it would be better to use annual composites of the night light data sets to reduce the need for large amounts of computational resources.
 
