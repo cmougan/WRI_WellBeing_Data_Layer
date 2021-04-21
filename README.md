@@ -184,14 +184,14 @@ Future WorkSteps:
 ## Project Organization
 
 ### Solve For Good Collaborators
-
-[Carlos Mougan](https://www.linkedin.com/in/carlosmougan/)
-
 [Sunayana Ghosh](https://www.linkedin.com/in/sunayanag/)
 
 [Gijs van den Dool](https://www.linkedin.com/in/gvddool/)
 
 [Rohan Nadeem ](https://www.linkedin.com/in/rohaan-nadeem/)
+
+[Carlos Mougan](https://www.linkedin.com/in/carlosmougan/): (Project Scoper/Manager) Contributed with the scoping of the project
+evaluation, and modeling of the task.
 
 ### Word Resources Institute
 
