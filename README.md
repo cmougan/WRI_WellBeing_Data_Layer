@@ -49,7 +49,7 @@ They are jointly funded by the United States Agency for International Developmen
 
 The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the poorest wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing.
 
-![Slight But Workable Skew](images/variance.png)
+![Slight But Workable Skew](images/wealth_labels_pie.png)
 
 Box and whisker plots as well as Violin plots were used to make the following observations:
 
