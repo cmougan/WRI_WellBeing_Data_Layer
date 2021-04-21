@@ -127,54 +127,57 @@ This label even if at first might seem a multiclassification is a continuous fea
 We treat this problem as a regression task than then need to be binarized again in the post procesing part of the ML pipeline.
 In the meanwhile we use the Mean Absolute Error as a intuitive evaluation metric.
 
-The following graph summaries relative performance of the best performing regression models. The best model is highlighted:
+We standarized the label to have it between [0-1], for sake of dimensionality.
 
-![Best Performing Regression Models](images/best_mae.png)
+![Real Wealth](images/real.png)
 
-Note: initial evaluations were carried out on Wealth Index but final model was trained to predict wealth class. Wealth class is based on Wealth Index so the comparative scores hold valid.
+In the above image, For the state Araria we can see the scaled label. 0 being poor and 1 rich.
+There is a disctrict that has a higher wealth than the rest.
+
 
 ### Explainable Machine learning pipeline
 
 Due to the possible impact of this project in public policy we advocate for an explainable ML approach.
 ![Trained Decision Tree](images/tree_ohe.png)
 
-##### Classification Models
+For the modeling part a set of experiments to determine which  machine learning estimators was performed.
+The selected estimator for this part of the project was a decision tree, due to its okey performance, in a small dataset. 
+This model also allows us to understand how are the ML decisions made.
 
-A number classification models were tested including decision trees, Logistic regression and Catboost.
-Their performance was compared on basis of Mean Absolute Error.
-The impact of encoding technique was also taken into consideration: experiments were carried out with One Hot Encoding, Label encoding and Catboost Encoder.
-
-##### Regression Models
-
-The problem was also analyzed as a regression model.
-Numerous models were tested including Lasso, Linear Regression, Catboost and Decision Tree Regression. Their performance was compared on basis of Mean Absolute Error. The impact of encoding technique was also taken into consideration: experiments were carried out with One Hot Encoding, Label encoding and Catboost Encoder.
 
 ## Results
 
+After preprocessing the data the following results were obtained.
+![Predicted Wealth](images/preds.png)
+![Difference of Wealth](images/diff.png)
+
+In the difference of wealth distribution we can see where our model is achieving the best results and where its failing.
+
 ### Conclusions
 
-'Hybrid' regression model (Decision Tree Regression) performed relatively better. Mean Absolute Error was only 0.64 for a range of scores 1 to 5 (1 representing Poorest wealth class and 5 representing the richest wealth class).
+Predictive Model that is:
+1.  Open Source Data
+2.  No cloud computing resources
 
-An added benefit is the easy explainable of the model while preserving a high accuracy i.e 70%.
+Modeling remains explainable andaccountable while preserving accuracy
+1. Explainable and Interpretable machine learning
+2. Accountable. It should be possible to trace the logical reasons of why a decision was taken.  
+3. High Generalization: Simple models tend to have a higher generalization than complex models [1]
 
 ### Deliverables
-
 The project had following deliverables:
 
 1. Project final [presentation](https://github.com/cmougan/WRI_WellBeing_Data_Layer/blob/master/Deliverables/Presentation.pdf)
-2. A report with an extensive evaluation of the model
-
-The deliverables will be shared in the following manner:
-
-1. A Github repository containing all the code data and documentation
-2. A report explaining model performance and decision making process (.pptx)
+2. A report with an extensive analyisis of the methodology followed.
 
 ## Future Work
 
-1. The model achieved a high accuracy of 70% for the Araria district of Maharashtra. Its performance on state and national level remains to be evaluated.
-2. Nighttime Light Data can be worked to provide an additional layer of information for the model's decision making process.
-3. A neural network regression model can be experimented with to see if Deep Learning techniques can further improve the model performance.
-4. Although the model performed very well, its performance over time needs to be evaluated.
+Future WorkSteps:
+1. Scale Up: Due to the computational resources limitation we ended up only working for one district of India. Its performance on state and national level remains to be evaluated.
+2. Integrate with NTL: One further data integration that should be helpful is the Night Data, this data theoretically should improve the accuracy in areas where OSM data is scarce.
+3. Temporal Evaluation: As the goal of the project, is to prevent what will happen on the future with forest, there is the need to ensure that the model will generalize as time goes by.
+
+
 
 ## Project Organization
 
@@ -202,3 +205,6 @@ The deliverables will be shared in the following manner:
 ...
 
 #### Bibliography
+
+[1] Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead: https://www.nature.com/articles/s42256-019-0048-x
+
