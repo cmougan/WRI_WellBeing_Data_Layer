@@ -18,6 +18,7 @@ More information on the architecture and implementation below.
   - [Night Time Light Data](#Night-Time-Light-Data)
 - [Methodology](#Night-Time-Light-Data)
 
+  - [Data Preparation](#Data-Preparation)
   - [Evaluation Strategy](#Evaluation-Strategy)
   - [Machine learning pipeline](#Machine-Learning-Pipeline)
 - [Results](#Results)
@@ -47,7 +48,7 @@ The aim of the project is to propose an alternative to Demographic Health Survey
 Demographic Health Surveys collect information on population, health, and nutrition for each state and union territory.
 They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF) and the United Nations. The datasets used in this project were obtained from the [dhsprogram](https://dhsprogram.com/) website.
 
-The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the poorest wealth class, variance between record counts lied within 1 standard deviation, warranting it as usable and eliminating the need for data balancing.
+The dataset was explored manually as well as through Pandas Profiling libary. While the dataset was found to be slightly skewed towards the poorest wealth class, variance between record counts lie within 1 standard deviation, warranting it as usable and eliminating the need for data balancing.
 
 ![Slight But Workable Skew](images/variance.png)
 
@@ -102,9 +103,13 @@ A python module [ntl_data_extraction](./dssg/dataio/ntl_data_extraction.py) and 
 
 The data was explored but due to a pressing need of computational resources and time, the data was not integrated with the other data sources and hence not utilized for solution building. We also concluded that for future computations it would be better to use annual composites of the night light data sets to reduce the need for large amounts of computational resources.
 
-The implementation of the osm_data_extraction and ntl_data_extraction modules would be crucial to scale the data processing pipeline for the rest of India or for any other country in the world.
+The implementation of the `osm_data_extraction` and `ntl_data_extraction` modules would be crucial to scale the data processing pipeline for the rest of India or for any other country in the world.
 
 ## Project Methodology
+
+### Data Preparation
+
+The goal of this project 
 
 ### Evaluation Strategy
 
