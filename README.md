@@ -198,6 +198,8 @@ The project had following deliverables:
 
 1. Project final [presentation](https://github.com/cmougan/WRI_WellBeing_Data_Layer/blob/master/Deliverables/Presentation.pdf)
 2. A report with an extensive analyisis of the methodology followed.
+3. A separate module of the weighted Voronoi implementation in [gis-laguerre](https://github.com/dai-mo/gis-laguerre)
+4. A corresponding article on weighted Voronoi for knowledge dissemination in [Towards Data Science](https://towardsdatascience.com/data-preparation-for-geospatial-analysis-ml-with-laguerre-voronoi-in-python-71b9b418d8b6)
 
 ## Future Work
 
