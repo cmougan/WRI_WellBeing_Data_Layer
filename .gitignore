@@ -9,6 +9,7 @@
 !Pipfile
 !Pipfile.lock
 !*.py
+!*.png
 
 #... even if they are in subdirectories
 !*/
