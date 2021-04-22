@@ -57,16 +57,18 @@ Box and Violin plots were used to make the following observations:
 
 - Wealth index had almost a perfectly linear normal distribution.
 - Population density was found to have a positive correlation with the wealth index.
-- The distribution of roof materials is highly diffused. 
-- Wealth and electricity usage are correlated.
+- Wealth and electricity usage are correlated (figure 1).
+- The distribution of roof materials is highly diffused (figure 2). 
+- Richer families prefer flush-toilets (figure 3).
+- The distribution of water source is highly diffused (figure 4). 
 
-![Richer Families Are Electrified](images/electricity.png)
+![Figure 1: Richer Families Are Electrified](images/electricity.png)
 
+![Figure 2: Choice of Roof Material is highly diffused](images/material_of_roof.png)
 
-![Richer Families Use Flush-Toilets](images/richer_flush.png)
+![Figure 3: Richer Families Use Flush-Toilets](images/richer_flush.png)
 
-
-![Urban Areas Are Richer](images/water_source.png)
+![Figure 4: Water Sources Are Highly Diffused](images/water_source.png)
 
 The figures above visualize the different wealth distributions on several categorical features found on the dataset.
 
