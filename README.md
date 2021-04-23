@@ -231,25 +231,25 @@ there is the need to ensure that the model will generalize as time goes by.
 
 ### Solve For Good Collaborators
 
-[Sunayana Ghosh](https://www.linkedin.com/in/sunayanag/)
+[Sunayana Ghosh](https://www.linkedin.com/in/sunayanag/) (Data Engineering & ML)
 
-[Gijs van den Dool](https://www.linkedin.com/in/gvddool/)
+[Gijs van den Dool](https://www.linkedin.com/in/gvddool/) (GIS Expert & Data Engineering)
 
-[Rohan Nadeem ](https://www.linkedin.com/in/rohaan-nadeem/)
+[Rohan Nadeem ](https://www.linkedin.com/in/rohaan-nadeem/) (Data Science)
 
-[Carlos Mougan](https://www.linkedin.com/in/carlosmougan/)
+[Carlos Mougan](https://www.linkedin.com/in/carlosmougan/) (Project Scoper/Manager)
 
 ### Word Resources Institute
 
-[Rong Fang](https://www.linkedin.com/in/rongfang1/)
+[Rong Fang](https://www.linkedin.com/in/rongfang1/) (Scientist and Project Manager)
 
-[Kathleen Buckingham](https://www.linkedin.com/in/kathleenbuckingham/)
+[Kathleen Buckingham](https://www.linkedin.com/in/kathleenbuckingham/) (Project Manager)
 
 ### Omdena
 
-[Rehab Emam](https://www.linkedin.com/in/rehabemam228/)
+[Rehab Emam](https://www.linkedin.com/in/rehabemam228/) (Consultant)
 
-[Precioso Gabrillo](https://www.linkedin.com/in/precioso-gabrillo-iii/)
+[Precioso Gabrillo](https://www.linkedin.com/in/precioso-gabrillo-iii/) (Consultant)
 
 
 ### Bibliography
