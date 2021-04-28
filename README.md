@@ -8,7 +8,7 @@ This project contains the code, papers, and deliverables for the [DSSG project](
  *Creating a well-being data layer using machine learning, satellite imagery, and ground-truth data* [link](https://www.solveforgood.org/proj/47/)
 
 In the long term, we are building a tool that can be extended to predict the wealth and economic factors of any given area in India.
-More information on the architecture and implementation below.
+More information on the architecture and implementation is given below.
 
 # Table of contents
 
@@ -51,24 +51,33 @@ Demographic Health Surveys collect information on population, health, and nutrit
 They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF), and the United Nations. The datasets used in this project were obtained from the [dhsprogram](https://dhsprogram.com/) website.
 
 The dataset was explored manually as well as through [Pandas Profiling library](https://github.com/pandas-profiling/pandas-profiling). 
-![Slight But Workable Skew](images/wealth_labels_pie.png)
+|![Slight But Workable Skew](images/wealth_labels_pie.png)|
+|:--:|
 
 Box and Violin plots were used to make the following observations:
 
 - Wealth index had almost a perfectly linear normal distribution.
 - Population density was found to have a positive correlation with the wealth index.
-- Wealth and electricity usage are correlated (figure 1).
-- The distribution of roof materials is highly diffused (figure 2). 
-- Richer families prefer flush-toilets (figure 3).
-- The distribution of water source is highly diffused (figure 4). 
+- Wealth and electricity usage are correlated.(Figure 1)
+- The distribution of roof materials is highly diffused (Figure 2). 
+- Richer families prefer flush toilets (Figure 3).
+- The distribution of water source is highly diffused (Figure 4). 
 
-![Figure 1: Richer Families Are Electrified](images/electricity.png)
+|![image.png](images/electricity.png)|
+|:--:|
+|Figure 1: Richer families have electricity|
 
-![Figure 2: Choice of Roof Material is highly diffused](images/material_of_roof.png)
+|![image.png](images/material_of_roof.png)|
+|:--:|
+|Figure 2: Choice of roof material is highly diffused.|
 
-![Figure 3: Richer Families Use Flush-Toilets](images/richer_flush.png)
+|![](images/richer_flush.png)|
+|:--:|
+|Figure 3: Richer families use flush-toilets|
 
-![Figure 4: Water Sources Are Highly Diffused](images/water_source.png)
+|![image.png](images/water_source.png)|
+|:--:|
+|Figure 4: Water Sources Are Highly Diffused|
 
 The figures above visualize the different wealth distributions on several categorical features found on the dataset.
 
