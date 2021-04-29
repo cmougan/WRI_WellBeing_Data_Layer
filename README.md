@@ -254,9 +254,34 @@ Clone the project:
 $ git clone git@github.com:<your_user_name>/WRI_WellBeing_Data_Layer.git
 ```
 Add [this](https://github.com/cmougan/WRI_WellBeing_Data_Layer) repository as a remote and name it `upstream`. Clone of your own fork is named `origin`.
+
+For further instructions for setting up, please follow the steps [here](./dssg/README.md)
 ### Main Components
 TODO
 ### Contribution Guidelines
+In general we follow the [GitHub Forking Workflow](https://guides.github.com/activities/forking/)
+#### On GitHub
+- Create an issue for each new bug/feature/update/documentation that you want to contribute to. In the issue description, be as detailed as possible with the expected inputs, outputs and an outline of the process to solve the problem. In case of a bug add the steps needed to reproduce it.
+- Assign someone to the issue and apply a specific tag to it (documentation, enhancement, bug, etc.).
+
+#### On your local machine
+- To start working on an issue create a separate branch :
+```
+git checkout -b feature/<branch_name>
+```
+if it is a feature or 
+```
+git checkout -b bug/<branch_name>
+```
+substitute the `<branch_name>` with a descriptive name.
+- Once your work is done, commit and push:
+```
+git push -u origin feature/<branch_name>
+```
+
+#### Back on GitHub
+- Once issue is solved, make a Pull Request (PR) on GitHub to merge to master branch and link the issue in the PR description and assign people to review your PR.
+- Once the PR get approved and merged, delete the branch and close the issue. 
 ## Project Organization
 
 ### Solve For Good Collaborators
