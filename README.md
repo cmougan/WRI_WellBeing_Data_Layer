@@ -8,7 +8,7 @@ This project contains the code, papers, and deliverables for the [DSSG project](
  *Creating a well-being data layer using machine learning, satellite imagery, and ground-truth data* [link](https://www.solveforgood.org/proj/47/)
 
 In the long term, we are building a tool that can be extended to predict the wealth and economic factors of any given area in India.
-More information on the architecture and implementation below.
+More information on the architecture and implementation is given below.
 
 # Table of contents
 
@@ -17,12 +17,13 @@ More information on the architecture and implementation below.
 
   - [Demographic Health Survey](#Demographic-Health-Surveys)
   - [Open Street Maps Data](#Open-Street-Maps-Data)
-  - [Night Time Light Data](#Night-Time-Light-Data)
-- [Methodology](#Night-Time-Light-Data)
+  - [Night-Time Light Data](#Night-Time-Light-Data)
+- [Project Methodology](#Project-Methodology)
 
   - [Data Preparation](#Data-Preparation)
   - [Evaluation Strategy](#Evaluation-Strategy)
-  - [Machine learning pipeline](#Machine-Learning-Pipeline)
+  - [Label Transformation](#Label-Transformation)
+  - [Explainable Machine learning pipeline](#Explainable-Machine-Learning-Pipeline)
 - [Results](#Results)
 
   - [Conclusions](#Conclusions)
@@ -51,24 +52,33 @@ Demographic Health Surveys collect information on population, health, and nutrit
 They are jointly funded by the United States Agency for International Development (USAID), the United Kingdom Department for International Development (DFID), the Bill and Melinda Gates Foundation (BMGF), and the United Nations. The datasets used in this project were obtained from the [dhsprogram](https://dhsprogram.com/) website.
 
 The dataset was explored manually as well as through [Pandas Profiling library](https://github.com/pandas-profiling/pandas-profiling). 
-![Slight But Workable Skew](images/wealth_labels_pie.png)
+|![Slight But Workable Skew](images/wealth_labels_pie.png)|
+|:--:|
 
 Box and Violin plots were used to make the following observations:
 
 - Wealth index had almost a perfectly linear normal distribution.
 - Population density was found to have a positive correlation with the wealth index.
-- Wealth and electricity usage are correlated (figure 1).
-- The distribution of roof materials is highly diffused (figure 2). 
-- Richer families prefer flush-toilets (figure 3).
-- The distribution of water source is highly diffused (figure 4). 
+- Wealth and electricity usage are correlated.(Figure 1)
+- The distribution of roof materials is highly diffused (Figure 2). 
+- Richer families prefer flush toilets (Figure 3).
+- The distribution of water source is highly diffused (Figure 4). 
 
-![Figure 1: Richer Families Are Electrified](images/electricity.png)
+|![image.png](images/electricity.png)|
+|:--:|
+|Figure 1: Richer families have electricity|
 
-![Figure 2: Choice of Roof Material is highly diffused](images/material_of_roof.png)
+|![image.png](images/material_of_roof.png)|
+|:--:|
+|Figure 2: Choice of roof material is highly diffused.|
 
-![Figure 3: Richer Families Use Flush-Toilets](images/richer_flush.png)
+|![](images/richer_flush.png)|
+|:--:|
+|Figure 3: Richer families use flush-toilets|
 
-![Figure 4: Water Sources Are Highly Diffused](images/water_source.png)
+|![image.png](images/water_source.png)|
+|:--:|
+|Figure 4: Water Sources Are Highly Diffused|
 
 The figures above visualize the different wealth distributions on several categorical features found on the dataset.
 
@@ -77,33 +87,25 @@ All the images are available in images folder and in the [(DSSG/WRI) DHS Analysi
 
 ### Open Street Maps Data
 
-OpenStreetMap (OSM) is an open-source project that crowds sources the world map and has made it available free of cost.
-The data quality is generally seen as reliable although it varies across the world.
+OpenStreetMap (OSM) is an open-source project that crowd-sources the world map and has made it available free of cost. OSM compares to the traditional map provider data and is often considered as good or better than what is commercially available, as reported [here](https://mapbox.github.io/osm-analysis-collab/osm-quality).
 
 A python module [osm_data_extraction](./dssg/dataio/osm_data_extraction.py) was implemented to extract OSM data given the [GADM, Level 3](https://gadm.org/download_country_v3.html) shapefile and a district name. The module uses [OSMNx](https://github.com/gboeing/osmnx) which interacts with the OpenStreetMap's API to get the relevant data for a specific region and stores it in a csv file. An example usage of this module can be found in the notebook [araria_district.ipynb](./dssg/data-exploration/araria_district.ipynb).
 
-
-Due to computing resource constraints, the area of study was restricted to the Araria district of Bihar state.
-
-
-
+Due to computing resource constraints, the analysis has been restricted to the Araria district of Bihar state.
 ### Night-Time Light Data
 
-Nighttime light data can highlight areas of greater economic activity as these regions tend to be relatively more lit.
-Image data to proceed with this approach was obtained via Google Earth Engine (GEE).
-GEE provides a quickly accessible collection of data images captured across timelines, 
-lightwave lengths, and satellite systems.
+Night-time light (NTL) data can highlight areas of higher economic activity as these regions tend to be relatively more lit.
 
-The data is open and free to use for non-commercial use cases.
-The first approach of this project explored the usefulness of the GEE interface and the monthly NTL images (from the mines dataset <a href="#ref3">[3]</a>
+Image data to explore this approach was obtained via Google Earth Engine (GEE). GEE provides a quickly accessible collection of data images captured across timelines, lightwave lengths, and satellite systems.
+
+The data is open and free to use for non-commercial use cases. The first approach of this project explored the usefulness of the GEE interface and the monthly NTL images (from the mines dataset <a href="#ref3">[3]</a>
 
 The second approach looked at another data stream (NASA Black Marble <a href="#ref4">[4]</a> to look at the daily variability of the data. 
 Both approaches were useful to gain an understanding of the different flavors of NTL data, and how these data sources could be utilized in future projects.
 
 A python module [ntl_data_extraction](./dssg/data/ntl_data_extraction.py) and a command-line app [download-nightlights](./dssg/apps/download-nightlights.py) were implemented to download the night light data for a given district and the date range.
-The implementation uses the [modapsclient](https://pypi.org/project/modapsclient/), a RESTful client for NASA's MODIS Adaptive Processing System (MODAPS). The python module also implements a method to convert the hdf5 files to GeoTiff files for further processing. After conversion, from hdr (native format) to GeoTIFF, the daily NTL intensity tiles are available for processing. The project area (Continental India) is covered by 7 (or 8) tiles of 10x10 degrees, or 2400x2400 cells. To match the temporal window of the project (2013-2017, 2 years around the DHS 2015 census for India) the total NTL data
-the repository would be more than 1825 data layers (4MB per HDR / 10MB per GeoTiff images).
-The difference in disk size between HDR and GeoTIFF is the compression and data type, HDR files are optimized for storage, and will contain besides the light intensity values also the data quality
+The implementation uses the [modapsclient](https://pypi.org/project/modapsclient/), a RESTful client for NASA's MODIS Adaptive Processing System (MODAPS). The python module also implements a method to convert the hdf5 files to GeoTiff files for further processing. After conversion, from hdr (native format) to GeoTIFF, the daily NTL intensity tiles are available for processing. The project area (Continental India) is covered by 7 (or 8) tiles of 10x10 degrees, or 2400x2400 cells. To match the temporal window of the project (2013-2017, 2 years around the DHS 2015 census for India) the total NTL data repository would be more than 1825 data layers (4MB per HDR / 10MB per GeoTiff images).
+The difference in disk size between HDR and GeoTIFF is due to compression and data type, HDR files are optimized for storage, and will contain besides the light intensity values also the data quality
 flags. The team used NASA’s VIIRS/NPP LunarBRDF-Adjusted Nighttime Lights data with a spatial resolution of 500m.
 
 The data was explored but due to a pressing need for computational resources and time, the data was not integrated with the other data sources and hence not utilized for solution building. We also concluded that for future computations it would be better to use annual composites of the night light data sets from the mines data repository [3], to reduce the need for large amounts of computational resources.
@@ -131,7 +133,8 @@ All the details of the implementation of this tessellation on the DHS data can b
 * [gis-laguerre : Applications of Laguerre-Voronoi to GIS problems](https://github.com/dai-mo/gis-laguerre)
 * [Data Preparation for Geospatial Analysis & ML with Laguerre-Voronoi in Python](https://towardsdatascience.com/data-preparation-for-geospatial-analysis-ml-with-laguerre-voronoi-in-python-71b9b418d8b6)
 
-![image.png](./images/weighted_voronoi_india_clipped.png)
+|![image.png](./images/weighted_voronoi_india_clipped.png)|
+|:--:|
 
 **Combine DHS and OSM Data**: In the next step we combine the weighted Voronoi GeoDataFrame specific to a district with the OSM vector data of the same district using the following strategy:
 
@@ -142,7 +145,7 @@ All the details of the implementation of this tessellation on the DHS data can b
 
   This pipeline was partially implemented in the [araria_voronoi.ipynb](./dssg/araria_voronoi.ipynb) notebook.
 
-**Combine DHS and NTL Data**: Similar to the techniques used to match the OSM data to DHS clusters, a method will have to develop to aggregate the NTL to the appropriate DHS cluster. It would be recommended to use the same weighted Vonoroi polygons when doing the "Zonal Statistics"; a spatial operation designed to retrieve key statistics by area (polygons) from raster images.
+**Combine DHS and NTL Data**: Similar to the techniques used to match the OSM data to DHS clusters, a method will have to be developed to aggregate the NTL to the appropriate DHS cluster. It is recommended to use the same weighted Vonoroi polygons when doing the "Zonal Statistics"; a spatial operation designed to retrieve key statistics by area (polygons) from raster images.
 
 ### Evaluation Strategy
 
@@ -151,7 +154,8 @@ For this matter, it's important to strategically partition a dataset in a way th
 Due to the few samples in the dataset restrictions, we performed a Leave One Out evaluation (LOOCV).
 Leave-one-out cross-validation, or LOOCV, is a configuration of k-fold cross-validation where k is set to the number of examples in the dataset.
 
-![Leave One Out Cross Validation](images/LOOCV.gif)
+|![Leave One Out Cross Validation](images/LOOCV.gif)|
+|:--:|
 
 LOOCV is a computationally expensive procedure to perform,
 although it results in a reliable and unbiased estimate of model performance.
@@ -167,32 +171,37 @@ In the meanwhile, we use the Mean Absolute Error as an intuitive evaluation metr
 
 We standardized the label to have it between [0-1], for sake of dimensionality.
 
-![Real Wealth](images/real.png)
+|![Real Wealth](images/real.png)|
+|:--:|
 
-In the above image, For the state Araria, we can see the scaled label. 0 being poor and 1 rich.
-There is a district that has a higher wealth than the rest.
+In the above image, for the Araria district, we can see the scaled label. 0 being poor and 1 rich.
+There is a Voronoi region within the Araria district that has a higher wealth than the rest.
 
 ### Explainable Machine learning pipeline
 
 Due to the possible impact of this project on public policy, we advocate for an explainable ML approach <a href="#ref6">[6]</a>.
-![Trained Decision Tree](images/tree_ohe.png)
 
-For the modeling part a set of experiments to determine which machine learning estimators was performed.
-The selected estimator for this part of the project was a decision tree, due to its key performance
- and given that the data that we are working with at this stage relative small.
-This model also allows us to understand how are the ML decisions made.
+|![Trained Decision Tree](images/tree_ohe.png)|
+|:--:|
+
+For the modeling part a set of experiments to determine the most reasonable machine learning estimator was performed.
+The selected estimator for this part of the project was a decision tree, due to its performance
+ and given that the data we are working with at this stage is relatively small.
+This model also allows us to understand how the ML decisions are made.
 
 ## Results
 
 After preprocessing the data the following results were obtained.
-![Predicted Wealth](images/preds.png)
-![Difference of Wealth](images/diff.png)
+|![Predicted Wealth](images/preds.png)|
+|:--:|
+
+|![Difference of Wealth](images/diff.png)|
+|:--:|
 
 In the difference of wealth distribution, we can see where our model is achieving the best results and where it's failing.
 This visualization can help to gain trust in the model since metrics do not always give users an understanding of a model's performance.
 
-We can note in the heatmap that most of the errors are between [0.1,0.2]%. This percentual error in the predictions is low
- and provides preliminary evidence that a model should be able to perform with a high enough quality with a larger dataset.
+We can note in the heatmap that most of the errors are between [0.1,0.2]%. This percentual error in the predictions is low and provides preliminary evidence that a model should be able to perform with a high enough quality with a larger dataset.
 
 ### Conclusions
 
@@ -216,17 +225,38 @@ The project had the following deliverables:
 3. A separate module of the weighted Voronoi implementation in [gis-laguerre](https://github.com/dai-mo/gis-laguerre)
 4. A corresponding article on weighted Voronoi for knowledge dissemination in [Towards Data Science](https://towardsdatascience.com/data-preparation-for-geospatial-analysis-ml-with-laguerre-voronoi-in-python-71b9b418d8b6)
 
-## Future Work
+### Future Work
 
 Future work steps:
 
-1. Scaling Up: Due to the limitation of the computational resources we ended up only working for one district of India. 
- Its performance on state and national levels remains to be evaluated.
+1. Scaling Up: Due to the limitation of the computational resources we ended up working for only one district of India. Its performance on state and national levels remains to be evaluated.
 2. Integrate with NTL: One further data integration that should be helpful is the Night Light Data,
  this data theoretically should improve the accuracy in areas where OSM data is scarce.
-3. Temporal Evaluation: As the goal of the project, is to prevent what will happen in the future with forests, 
-there is the need to ensure that the model will generalize as time goes by.
+3. Temporal Evaluation: As the goal of the project, is to prevent what will happen in the future with forests, there is the need to ensure that the model will generalize as time goes by.
 
+
+## Development
+
+### Getting Started
+The instructions here will get your development environment setup for this project.
+
+#### Prerequisites
+To build this project you need
+- To clone this GitHub repository 
+- Then for Linux / MacOS environments set the PYTHONPATH to the directory of the Gist above.
+- If you do not have `pipenv` installed make sure to install it using the instructions found [here](https://pipenv-fork.readthedocs.io/en/latest/install.html) 
+
+#### Installing
+:warning: The project has to be forked to your own namespace before cloning. 
+
+Clone the project:
+```
+$ git clone git@github.com:<your_user_name>/WRI_WellBeing_Data_Layer.git
+```
+Add [this](https://github.com/cmougan/WRI_WellBeing_Data_Layer) repository as a remote and name it `upstream`. Clone of your own fork is named `origin`.
+### Main Components
+TODO
+### Contribution Guidelines
 ## Project Organization
 
 ### Solve For Good Collaborators
@@ -252,7 +282,7 @@ there is the need to ensure that the model will generalize as time goes by.
 [Precioso Gabrillo](https://www.linkedin.com/in/precioso-gabrillo-iii/) (Consultant)
 
 
-### Bibliography
+## Bibliography
 
 <ol> 
     <li is="ref1"> Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead: https://www.nature.com/articles/s42256-019-0048-x</li>
