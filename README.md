@@ -257,7 +257,15 @@ Add [this](https://github.com/cmougan/WRI_WellBeing_Data_Layer) repository as a 
 
 For further instructions for setting up, please follow the steps [here](./dssg/README.md)
 ### Main Components
-TODO
+The main modules are as follows:
+- `osm_data_extraction` module, which has the following features :
+  - Extract GeoDataFrame of a district from a country GADM Level 2 shapefile.
+  - Plots the boundary of a given district along with the corresponding map tile from Open Street Maps.
+  - Retrieves and writes the map tile corresponding to the geo dataframe to a geotiff file.
+  - Plots a geotiff file.
+  - Creates the polygon and the corresponding graph for a given geo dataframe of a district. This is finally used to visualize the knots and edges model.
+  - A dictionary of tags, `default_tags = {amenity': True, 'building': True, 'emergency': True,
+                'highway': True, 'footway': True, 'landuse': True, 'water': True}` is used to extract relevant features and ammenities from the OSM API for a given district. 
 ### Contribution Guidelines
 In general we follow the [GitHub Forking Workflow](https://guides.github.com/activities/forking/)
 #### On GitHub
@@ -271,7 +279,7 @@ git checkout -b feature/<branch_name>
 ```
 if it is a feature or 
 ```
-git checkout -b bug/<branch_name>
+git checkout -b bugfix/<branch_name>
 ```
 substitute the `<branch_name>` with a descriptive name.
 - Once your work is done, commit and push:
