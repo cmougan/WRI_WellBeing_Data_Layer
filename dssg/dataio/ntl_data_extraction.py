@@ -9,7 +9,16 @@ from osgeo import ogr, gdal
 from gdalconst import *
 
 
-def download_url(url: str):
+def download_url(url: str) -> str:
+    """Given a url for h5 file checks if the file exists in the pre-defined NTL_HDF5_DIR
+    and downloads it if it does not exist.
+
+    Args:
+        url (str): web url of the hdf5 file
+
+    Returns:
+        str: url
+    """
     print("downloading: ", url)
     # assumes that the last segment after the / represents the file name
     filepath = os.environ.get("NTL_HDF5_DIR")
@@ -25,7 +34,21 @@ def download_url(url: str):
     return url
 
 
-def get_ntl_file_urls(district_gdf: gpd.geodataframe.GeoDataFrame, products: str, startTime: str, endTime: str, collection: int, district_json_file: str):
+def get_ntl_file_urls(district_gdf: gpd.geodataframe.GeoDataFrame, products: str, startTime: str, endTime: str,
+                      collection: int, district_json_file: str) -> list:
+    """Given a district geo dataframe and a specific product 
+
+    Args:
+        district_gdf (gpd.geodataframe.GeoDataFrame): [description]
+        products (str): [description]
+        startTime (str): [description]
+        endTime (str): [description]
+        collection (int): [description]
+        district_json_file (str): [description]
+
+    Returns:
+        list: [description]
+    """
     (w, s, e, n) = ode.district_extents(district_gdf)
     # Create a ModapsClient object
     a = modapsclient.ModapsClient()
