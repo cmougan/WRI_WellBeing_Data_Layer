@@ -257,8 +257,8 @@ Add [this](https://github.com/cmougan/WRI_WellBeing_Data_Layer) repository as a 
 
 For further instructions for setting up, please follow the steps [here](./dssg/README.md)
 ### Main Components
-The main modules are as follows:
-- `osm_data_extraction` module, which has the following features :
+The main components are as follows:
+- Module `osm_data_extraction`, which has the following features :
   - Extract GeoDataFrame of a district from a country GADM Level 2 shapefile.
   - Plots the boundary of a given district along with the corresponding map tile from Open Street Maps.
   - Retrieves and writes the map tile corresponding to the geo dataframe to a geotiff file.
@@ -266,6 +266,9 @@ The main modules are as follows:
   - Creates the polygon and the corresponding graph for a given geo dataframe of a district. This is finally used to visualize the knots and edges model.
   - A dictionary of tags, `default_tags = {amenity': True, 'building': True, 'emergency': True,
                 'highway': True, 'footway': True, 'landuse': True, 'water': True}` is used to extract relevant features and ammenities from the OSM API for a given district. 
+
+- Module `ntl_data_extraction` and command line app `download-nightlights.py`
+  - The command line app uses the methods in the module to download night time light hdf5 files for a given district and a specific time range and convert them to geotiff format. Since the hdf5 files cover a large area and may contain many districts we have added a check and it is downloaded only if it has not been downloaded earlier for another district. 
 ### Contribution Guidelines
 In general we follow the [GitHub Forking Workflow](https://guides.github.com/activities/forking/)
 #### On GitHub
