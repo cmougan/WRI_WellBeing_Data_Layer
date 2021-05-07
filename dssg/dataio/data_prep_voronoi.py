@@ -6,6 +6,9 @@ from shapely.geometry import Point
 from shapely.ops import unary_union
 import numpy as np
 from dotenv import load_dotenv
+import pandas as pd
+import pyreadstat
+import statistics
 
 load_dotenv()
 
@@ -52,7 +55,8 @@ def modify_dhs_shapefile(filename: str):
     # Create a geometry column
     reduced_dhs_gpd = gpd.GeoDataFrame(
         reduced_dhs_gpd,
-        geometry=gpd.points_from_xy(reduced_dhs_gpd.LONGNUM, reduced_dhs_gpd.LATNUM),
+        geometry=gpd.points_from_xy(
+            reduced_dhs_gpd.LONGNUM, reduced_dhs_gpd.LATNUM),
     )
 
     # extract all the points as list from geoseries
@@ -72,3 +76,41 @@ def modify_dhs_shapefile(filename: str):
 def coord_lister_of_point_series(geom):
     coords = list(geom.coords)
     return coords
+
+
+def read_and_reduce_sav(sav_file: str) -> pd.DataFrame:
+    """Reads the DHS SAV file for household recode and extracts only the columns related to DHS Cluster ID and wealth indexes with 
+    column names HV001, HV270, HV271. Then reduce by grouping by DHS Cluster ID and aggregating based on mode for wealth indexes.
+
+    Args:
+        sav_file (str): filename with the path for DHS SPSS SAV file.
+
+    Returns:
+        pd.DataFrame: returns the reduced dataframe
+    """
+    df = pd.read_spss(sav_file, usecols=['HV001', 'HV270', 'HV271'])
+    df2 = df.groupby('HV001').agg(
+        {'HV270': statistics.mode, 'HV271': 'mean'}).reset_index()
+
+    # Rename column HV001 to DHSCLUST
+    df2 = df2.rename(columns={'HV001': 'DHSCLUST'})
+
+    return df2
+
+
+def merge_clipped_voronoi_and_wealth_index(clipped_voronoi_shapefile: str, wealth_index_df: pd.DataFrame) -> gpd.geodataframe.GeoDataFrame:
+    """Merge the clipped voronoi geodataframe with wealth index dataframe into a single geodataframe
+
+    Args:
+        clipped_voronoi_shapefile (str): shapefile containing the clipped weighted voronoi geometry for a specific country.
+        wealth_index_df (pd.DataFrame): wealth index for each DHS cluster
+
+    Returns:
+        gpd.geodataframe.GeoDataFrame: dataframe obtained by merging the two dataframes.
+    """
+    country_voronoi_gpd = gpd.read_file(clipped_voronoi_shapefile)
+    merged_df = country_voronoi_gpd.merge(
+        wealth_index_df, on='DHSCLUST', how='left')
+    country_voronoi_merged_gpd = gpd.GeoDataFrame(
+        merged_df, crs='EPSG:4326', geometry=merged_df.geometry)
+    return country_voronoi_merged_gpd
