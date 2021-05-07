@@ -1,4 +1,3 @@
-# Code taken from :  https://github.com/sunayana/laguerre-voronoi
 import geopandas as gpd
 import os
 import itertools
